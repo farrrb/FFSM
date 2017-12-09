@@ -12,6 +12,12 @@ sudo: false
 compiler:
   - gcc
 
+addons:
+  apt:
+    packages:
+      - cmake
+      - lcov
+
 # Build steps
 script:
   # add 32-bit support to docker-vm

@@ -3,6 +3,7 @@ project(fbpfsm_root)
 
 # enable code coverage
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/externals/cmake-codecov/cmake" ${CMAKE_MODULE_PATH})
+message(${CMAKE_MODULE_PATH})
 find_package(codecov)
 
 add_subdirectory(externals)
