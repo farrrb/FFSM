@@ -7,9 +7,16 @@
 
 FFSM_t fsm_test;
 
+struct fsm_data
+{
+  int test_var;
+};
+
+struct fsm_data fsm_test_data;
+
 #define FFSM_SIG_TRANS_TO_NONE 1
 
-void *test_init_state(int signal)
+void *test_init_state(int signal, void * data)
 {
   switch (signal)
   {
@@ -49,8 +56,9 @@ void tearDown(void)
 // the actual test
 void test_init(void)
 {
-  FFSM_init(&fsm_test, test_init_state);
+  FFSM_init(&fsm_test, test_init_state, &fsm_test_data);
   TEST_ASSERT_EQUAL_PTR(fsm_test.current_state, test_init_state);
+  TEST_ASSERT_EQUAL_PTR(fsm_test.data, &fsm_test_data);
 
   FFSM_sendSignal(&fsm_test, FFSM_SIG_TRANS_TO_NONE);
   TEST_ASSERT_EQUAL_PTR(fsm_test.current_state, FFSM_STATE_NONE);

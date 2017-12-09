@@ -4,40 +4,44 @@
 
 #include "FFSM.h"
 
-void FFSM_init(FFSM_t *self, FFSM_State_t init_state)
+void FFSM_init(FFSM_t * const self, FFSM_State_t init_state, void *data)
 {
-  if (self && init_state)
+  if (self)
   {
     self->current_state = init_state;
-    init_state(FFSM_SIG_ENTRY);
+    self->data = data;
+    if (init_state)
+    {
+      init_state(FFSM_SIG_ENTRY, self->data);
+    }
   }
 }
 
-void FFSM_transit(FFSM_t *self, FFSM_State_t new_state)
+void FFSM_transit(FFSM_t * const self, FFSM_State_t new_state)
 {
   if (self)
   {
     if (self->current_state)
     {
-      self->current_state(FFSM_SIG_EXIT);
+      self->current_state(FFSM_SIG_EXIT, self->data);
     }
 
     self->current_state = new_state;
 
     if (self->current_state)
     {
-      self->current_state(FFSM_SIG_ENTRY);
+      self->current_state(FFSM_SIG_ENTRY, self->data);
     }
   }
 }
 
-void FFSM_sendSignal(FFSM_t *self, int signal)
+void FFSM_sendSignal(FFSM_t * const self, int signal)
 {
   if (self)
   {
     if (self->current_state != FFSM_STATE_NONE)
     {
-      self->current_state(signal);
+      self->current_state(signal, self->data);
     }
   }
 }

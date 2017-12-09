@@ -12,18 +12,19 @@
 #define FFSM_SIG_EXIT   (-2)
 
 // prototype for all state function implementations
-typedef void* (*FFSM_State_t)(int signal);
+typedef void* (*FFSM_State_t)(int signal, void *data);
 
 #define FFSM_STATE_NONE  ((FFSM_State_t)(0))
 
 typedef struct
 {
   FFSM_State_t current_state;
+  void *data;
 } FFSM_t;
 
 
-void FFSM_init(FFSM_t *self, FFSM_State_t init_state);
-void FFSM_transit(FFSM_t *self, FFSM_State_t new_state);
-void FFSM_sendSignal(FFSM_t *self, int signal);
+void FFSM_init(FFSM_t * const self, FFSM_State_t init_state, void *data);
+void FFSM_transit(FFSM_t * const self, FFSM_State_t new_state);
+void FFSM_sendSignal(FFSM_t * const self, int signal);
 
 #endif // FFSM_H__
