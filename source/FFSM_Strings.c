@@ -2,9 +2,6 @@
 // Created by farrrb on 09-Dec-17.
 //
 
-#include <crtdbg.h>
-#include "FFSM_Strings.h"
-
 const char *FFSM_getStrFromEvent(FFSM_Event_t event)
 {
   switch (event)
