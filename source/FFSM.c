@@ -8,7 +8,6 @@ void FFSM_init(FFSM_t * const self, FFSM_State_t init_state, void *data)
 {
   if (self)
   {
-    self->current_state = init_state;
     self->data = data;
     if (init_state)
     {
