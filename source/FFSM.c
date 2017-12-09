@@ -4,14 +4,30 @@
 
 #include "FFSM.h"
 
-int my_test_func (int a)
+void FFSM_init(FFSM_t *self, FFSM_State_t init_state)
 {
-  if (a == 23)
+  if (self && init_state)
   {
-    return a / 2;
+    self->current_state = init_state;
+    init_state(FFSM_SIG_ENTRY);
   }
-  else
+}
+
+void FFSM_transit(FFSM_t *self, FFSM_State_t new_state)
+{
+  if (self)
   {
-    return a / 4;
+    self->current_state = new_state;
+  }
+}
+
+void FFSM_sendSignal(FFSM_t *self, int signal)
+{
+  if (self)
+  {
+    if (self->current_state != FFSM_STATE_NONE)
+    {
+      self->current_state(signal);
+    }
   }
 }
