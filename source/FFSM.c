@@ -12,7 +12,7 @@ void FFSM_init(FFSM_t * const self, FFSM_State_t init_state, void *data)
     self->data = data;
     if (init_state)
     {
-      init_state(FFSM_SIG_ENTRY, self->data);
+      FFSM_transit(self, init_state);
     }
   }
 }
