@@ -1,4 +1,4 @@
-# FPBFSM
+# FFSM
 Function Pointer Based Finite State Machine
 
 ## Build Status

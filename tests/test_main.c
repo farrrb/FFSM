@@ -3,7 +3,7 @@
 //
 
 #include "unity.h"
-#include "fbpfsm.h"
+#include "FFSM.h"
 
 // test: setup
 void setUp(void)

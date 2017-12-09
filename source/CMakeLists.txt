@@ -3,7 +3,7 @@ project(fbpfsm C)
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES fbpfsm.c fbpfsm.h)
+set(SOURCE_FILES FFSM.c FFSM.h)
 
 add_library(fbpfsm ${SOURCE_FILES})
 add_coverage(fbpfsm)
