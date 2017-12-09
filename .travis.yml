@@ -10,7 +10,7 @@ sudo: false
 
 # Compiler selection
 compiler:
-  - clang
+  - gcc
 
 # Build steps
 script:
@@ -21,7 +21,8 @@ script:
   - mkdir build
   - cd build
   - cmake .. && cmake --build . && ctest -V
-  - gcov tests/test.main.c
+  - make gcov
+  - make lcov
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
