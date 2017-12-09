@@ -6,8 +6,10 @@
 #include "unity.h"
 
 FFSM_t fsm_test;
+
 #define FFSM_SIG_TRANS_TO_NONE 1
-void* test_init_state(int signal)
+
+void *test_init_state(int signal)
 {
   switch (signal)
   {

@@ -17,7 +17,17 @@ void FFSM_transit(FFSM_t *self, FFSM_State_t new_state)
 {
   if (self)
   {
+    if (self->current_state)
+    {
+      self->current_state(FFSM_SIG_EXIT);
+    }
+
     self->current_state = new_state;
+
+    if (self->current_state)
+    {
+      self->current_state(FFSM_SIG_ENTRY);
+    }
   }
 }
 
