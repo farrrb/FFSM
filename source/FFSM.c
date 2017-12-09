@@ -8,6 +8,7 @@ void FFSM_init(FFSM_t * const self, FFSM_State_t init_state, void *data)
 {
   if (self)
   {
+    self->current_state = FFSM_STATE_NONE;
     self->data = data;
     if (init_state)
     {
@@ -22,14 +23,14 @@ void FFSM_transit(FFSM_t * const self, FFSM_State_t new_state)
   {
     if (self->current_state)
     {
-      self->current_state(FFSM_SIG_EXIT, self->data);
+      self->current_state(FFSM_EVENT_EXIT, self->data);
     }
 
     self->current_state = new_state;
 
     if (self->current_state)
     {
-      self->current_state(FFSM_SIG_ENTRY, self->data);
+      self->current_state(FFSM_EVENT_ENTRY, self->data);
     }
   }
 }

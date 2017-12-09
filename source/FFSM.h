@@ -5,11 +5,9 @@
 #ifndef FFSM_H__
 #define FFSM_H__
 
-
-
-#define FFSM_SIG_NONE   (0)
-#define FFSM_SIG_ENTRY  (-1)
-#define FFSM_SIG_EXIT   (-2)
+#define FFSM_EVENT_NONE   (0)
+#define FFSM_EVENT_ENTRY  (-1)
+#define FFSM_EVENT_EXIT   (-2)
 
 typedef int FFSM_Event_t;
 
