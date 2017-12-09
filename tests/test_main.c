@@ -73,6 +73,7 @@ void test_init(void)
   FFSM_transit(&fsm_test, test_final_state);
   TEST_ASSERT_EQUAL_PTR(fsm_test.current_state, test_final_state);
 
+  FFSM_sendSignal(&fsm_test, FFSM_SIG_NONE);
 }
 
 int main(int argc, char *argv[])
