@@ -3,8 +3,11 @@
 //
 #include <stdio.h>
 
+#include "fbpfsm.h"
+
 int main(int argc, char* argv[])
 {
-  printf("Test\n");
+  printf("Test: %d\n", my_test_func (23));
+
   return 0;
 }

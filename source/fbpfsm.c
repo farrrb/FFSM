@@ -3,3 +3,15 @@
 //
 
 #include "fbpfsm.h"
+
+int my_test_func (int a)
+{
+  if (a == 23)
+  {
+    return a / 2;
+  }
+  else
+  {
+    return a / 4;
+  }
+}
