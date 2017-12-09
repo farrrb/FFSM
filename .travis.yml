@@ -20,7 +20,7 @@ script:
   # real build
   - mkdir build
   - cd build
-  - cmake .. && cmake --build . && ctest -V
+  - cmake .. -DENABLE_COVERAGE=On && make && make test
   - make gcov
   - make lcov
 
