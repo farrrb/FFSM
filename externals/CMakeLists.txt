@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.2)
 project(Unity)
 
 add_library(Unity STATIC Unity/src/unity.c)
