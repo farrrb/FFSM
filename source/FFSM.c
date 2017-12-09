@@ -35,13 +35,13 @@ void FFSM_transit(FFSM_t * const self, FFSM_State_t new_state)
   }
 }
 
-void FFSM_sendSignal(FFSM_t * const self, int signal)
+void FFSM_sendSignal(FFSM_t * const self, int event)
 {
   if (self)
   {
     if (self->current_state != FFSM_STATE_NONE)
     {
-      self->current_state(signal, self->data);
+      self->current_state(event, self->data);
     }
   }
 }
