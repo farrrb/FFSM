@@ -25,7 +25,7 @@ void print_event(FFSM_Event_t event)
   printf("\nevent: %s:(%d)", FFSM_getStrFromEvent(event), event);
 }
 
-void *test_init_state(FFSM_Event_t event, void * data)
+FFSM_Status_t test_init_state(FFSM_Event_t event, void * data)
 {
   print_event(event);
   struct fsm_data *p = (struct fsm_data *)data;
@@ -53,15 +53,15 @@ void *test_init_state(FFSM_Event_t event, void * data)
       break;
     }
   }
-  return 0;
+  return FFSM_STATUS_HANDLED;
 }
 
-void *test_final_state(FFSM_Event_t event, void * data)
+FFSM_Status_t test_final_state(FFSM_Event_t event, void * data)
 {
   print_event(event);
   struct fsm_data *p = (struct fsm_data *)data;
   printf("\ngot data: %d", p->test_var);
-  return 0;
+  return FFSM_STATUS_HANDLED;
 }
 
 
