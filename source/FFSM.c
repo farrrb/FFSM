@@ -35,7 +35,7 @@ void FFSM_transit(FFSM_t * const self, FFSM_State_t new_state)
   }
 }
 
-void FFSM_sendSignal(FFSM_t * const self, int event)
+void FFSM_dispatchEvent(FFSM_t *const self, FFSM_Event_t event)
 {
   if (self)
   {

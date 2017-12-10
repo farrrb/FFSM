@@ -3,6 +3,8 @@
 //
 #include <stdio.h>
 
+#include "test_helper.h"
+
 #include "FFSM.h"
 #include "FFSM_Strings.h"
 #include "unity.h"
@@ -18,8 +20,10 @@ struct fsm_data fsm_test_data;
 
 #define FFSM_SIG_TRANS_TO_NONE 1
 
-void *test_init_state(FFSM_Event_t event, struct fsm_data * data)
+void *test_init_state(FFSM_Event_t event, void * data)
 {
+  struct fsm_data *p = (struct fsm_data *)data;
+  p->test_var++;
   printf("\nevent: %s", FFSM_getStrFromEvent(event));
   switch (event)
   {
@@ -44,12 +48,15 @@ void *test_init_state(FFSM_Event_t event, struct fsm_data * data)
       break;
     }
   }
+  return 0;
 }
 
-void *test_final_state(FFSM_Event_t event, struct fsm_data * data)
+void *test_final_state(FFSM_Event_t event, void * data)
 {
   printf("\nevent: %s", FFSM_getStrFromEvent(event));
-  (void)data;
+  struct fsm_data *p = (struct fsm_data *)data;
+  printf("\ngot data: %d", p->test_var);
+  return 0;
 }
 
 
@@ -70,10 +77,10 @@ void test_init(void)
   FFSM_init(&fsm_test, test_init_state, &fsm_test_data);
   TEST_ASSERT_EQUAL_PTR(fsm_test.current_state, test_init_state);
   TEST_ASSERT_EQUAL_PTR(fsm_test.data, &fsm_test_data);
-  FFSM_sendSignal(&fsm_test, FFSM_EVENT_NONE);
+  FFSM_dispatchEvent(&fsm_test, FFSM_EVENT_NONE);
 
   printf("\ntrans to none");
-  FFSM_sendSignal(&fsm_test, FFSM_SIG_TRANS_TO_NONE);
+  FFSM_dispatchEvent(&fsm_test, FFSM_SIG_TRANS_TO_NONE);
   TEST_ASSERT_EQUAL_PTR(fsm_test.current_state, FFSM_STATE_NONE);
 
   printf("\ntrans to final");
@@ -85,6 +92,9 @@ void test_init(void)
 int main(int argc, char *argv[])
 {
   UNITY_BEGIN();
+
+  UNUSED_PARAM(argc);
+  UNUSED_PARAM(argv);
 
   RUN_TEST(test_init);
 

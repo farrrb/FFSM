@@ -14,8 +14,10 @@ add_subdirectory(source)
 set(NAME test_main)
 set(TIMEOUT 5)
 
-add_executable(${NAME} tests/${NAME}.c)
+add_executable(${NAME} tests/${NAME}.c tests/test_helper.h)
 add_coverage(${NAME})
+
+target_compile_options(${NAME} PRIVATE -g -Wall -Wextra -pedantic)
 target_include_directories(${NAME} PRIVATE source externals/Unity/src)
 target_link_libraries(${NAME} fbpfsm Unity)
 add_test(${NAME} ${NAME})
