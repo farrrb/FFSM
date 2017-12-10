@@ -9,17 +9,21 @@ find_package(codecov)
 # CTest
 enable_testing()
 
+# Add libraries
 add_subdirectory(externals)
 add_subdirectory(source)
 
-set(NAME test_main)
-set(TIMEOUT 5)
+macro(setup_target NAME TIMEOUT)
+  add_coverage(${NAME})
+  target_compile_options(${NAME} PRIVATE -g -Wall -Wextra -pedantic)
+  target_include_directories(${NAME} PRIVATE source externals/Unity/src)
+  target_link_libraries(${NAME} FFSM Unity)
+  add_test(${NAME} ${NAME})
+  set_tests_properties(${NAME} PROPERTIES TIMEOUT ${TIMEOUT})
+endmacro(setup_target)
 
-add_executable(${NAME} tests/${NAME}.c tests/test_helper.h)
-add_coverage(${NAME})
+add_executable(test_main tests/test_main.c tests/test_helper.h)
+setup_target(test_main 5)
 
-target_compile_options(${NAME} PRIVATE -g -Wall -Wextra -pedantic)
-target_include_directories(${NAME} PRIVATE source externals/Unity/src)
-target_link_libraries(${NAME} FFSM Unity)
-add_test(${NAME} ${NAME})
-set_tests_properties(${NAME} PROPERTIES TIMEOUT ${TIMEOUT})
+add_executable(test_stack tests/test_stack.c tests/test_helper.h)
+setup_target(test_stack 5)
