@@ -20,6 +20,6 @@ add_coverage(${NAME})
 
 target_compile_options(${NAME} PRIVATE -g -Wall -Wextra -pedantic)
 target_include_directories(${NAME} PRIVATE source externals/Unity/src)
-target_link_libraries(${NAME} fbpfsm Unity)
+target_link_libraries(${NAME} FFSM Unity)
 add_test(${NAME} ${NAME})
 set_tests_properties(${NAME} PROPERTIES TIMEOUT ${TIMEOUT})
