@@ -20,11 +20,16 @@ struct fsm_data fsm_test_data;
 
 #define FFSM_SIG_TRANS_TO_NONE 1
 
+void print_event(FFSM_Event_t event)
+{
+  printf("\nevent: %s:(%d)", FFSM_getStrFromEvent(event), event);
+}
+
 void *test_init_state(FFSM_Event_t event, void * data)
 {
+  print_event(event);
   struct fsm_data *p = (struct fsm_data *)data;
   p->test_var++;
-  printf("\nevent: %s", FFSM_getStrFromEvent(event));
   switch (event)
   {
     case FFSM_EVENT_NONE:
@@ -53,7 +58,7 @@ void *test_init_state(FFSM_Event_t event, void * data)
 
 void *test_final_state(FFSM_Event_t event, void * data)
 {
-  printf("\nevent: %s", FFSM_getStrFromEvent(event));
+  print_event(event);
   struct fsm_data *p = (struct fsm_data *)data;
   printf("\ngot data: %d", p->test_var);
   return 0;
