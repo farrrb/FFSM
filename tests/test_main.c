@@ -4,10 +4,10 @@
 #include <stdio.h>
 
 #include "test_helper.h"
+#include "unity.h"
 
 #include "FFSM.h"
 #include "FFSM_Strings.h"
-#include "unity.h"
 
 FFSM_t fsm_test;
 

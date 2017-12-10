@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
-project(fbpfsm_root)
+project(fbpfsm_root C)
+set(CMAKE_C_STANDARD 99)
 
 # Enable code coverage
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/externals/CMake-codecov/cmake" ${CMAKE_MODULE_PATH})
