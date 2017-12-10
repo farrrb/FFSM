@@ -7,7 +7,6 @@
 
 #include "FFSM_Types.h"
 
-
 void FFSM_init(FFSM_t * const self, FFSM_State_t init_state, void *data);
 void FFSM_transit(FFSM_t * const self, FFSM_State_t new_state);
 void FFSM_dispatchEvent(FFSM_t * const self, FFSM_Event_t event);
