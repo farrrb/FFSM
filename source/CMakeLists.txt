@@ -8,7 +8,7 @@ set(SOURCE_FILES
   FFSM.h
   FFSM_Strings.c
   FFSM_Strings.h
-  FFSM_Stack.c FFSM_Stack.h)
+  FFSM_Stack.c FFSM_Stack.h FFSM_Types.h)
 
 add_library(FFSM ${SOURCE_FILES})
 add_coverage(FFSM)
