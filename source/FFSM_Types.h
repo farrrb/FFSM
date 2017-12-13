@@ -27,7 +27,7 @@ typedef struct
 typedef struct
 {
   FFSM_State_t *data;
-  int size;
+  unsigned int size;
   int top;
 } FFSM_Stack_t;
 

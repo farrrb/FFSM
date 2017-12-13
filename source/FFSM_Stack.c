@@ -3,9 +3,8 @@
 //
 
 #include "FFSM_Stack.h"
-#include "FFSM_Types.h"
 
-int FFSM_Stack_init(FFSM_Stack_t *stack, FFSM_State_t *data, int size)
+int FFSM_Stack_init(FFSM_Stack_t *stack, FFSM_State_t *data, unsigned int size)
 {
   if (stack)
   {

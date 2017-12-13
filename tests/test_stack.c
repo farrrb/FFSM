@@ -74,6 +74,8 @@ void test_init(void)
   TEST_ASSERT_EQUAL_PTR(FFSM_Stack_pop(&test_stack), (FFSM_State_t)1);
   TEST_ASSERT_EQUAL(test_stack.top, 0);
   TEST_ASSERT_EQUAL_PTR(FFSM_Stack_pop(&test_stack), (FFSM_State_t)1);
+
+  TEST_ASSERT_EQUAL_PTR(FFSM_Stack_pop((FFSM_Stack_t *)0), FFSM_STATE_NONE);
 }
 
 
