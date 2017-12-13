@@ -1,6 +1,7 @@
 //
 // Created by farrrb on 09-Dec-17.
 //
+#include <FFSM_Types.h>
 #include "test_helper.h"
 #include "unity.h"
 
@@ -42,7 +43,39 @@ void test_init(void)
   TEST_ASSERT_EQUAL_PTR(FFSM_STATE_NONE, test_data[0]);
   TEST_ASSERT_EQUAL_PTR(FFSM_STATE_NONE, test_data[1]);
   TEST_ASSERT_EQUAL_PTR(FFSM_STATE_NONE, test_data[2]);
+
+  TEST_ASSERT_EQUAL(test_stack.top, 0);
+  TEST_ASSERT_EQUAL_PTR(test_stack.data[0], (FFSM_State_t)0);
+
+  TEST_ASSERT_EQUAL(FFSM_Stack_push(&test_stack, (FFSM_State_t)1), 0);
+  TEST_ASSERT_EQUAL(test_stack.top, 1);
+  TEST_ASSERT_EQUAL_PTR(test_stack.data[0], (FFSM_State_t)1);
+
+  TEST_ASSERT_EQUAL(FFSM_Stack_push(&test_stack, (FFSM_State_t)2), 0);
+  TEST_ASSERT_EQUAL_PTR(test_stack.top, 2);
+  TEST_ASSERT_EQUAL_PTR(test_stack.data[1], (FFSM_State_t)2);
+
+  TEST_ASSERT_EQUAL(FFSM_Stack_push(&test_stack, (FFSM_State_t)3), 0);
+  TEST_ASSERT_EQUAL(test_stack.top, 3);
+  TEST_ASSERT_EQUAL_PTR(test_stack.data[2], (FFSM_State_t)3);
+
+  TEST_ASSERT_EQUAL(FFSM_Stack_push(&test_stack, (FFSM_State_t)4), -1);
+  TEST_ASSERT_EQUAL(test_stack.top, 3);
+  TEST_ASSERT_EQUAL_PTR(test_stack.data[2], (FFSM_State_t)3);
+
+  TEST_ASSERT_EQUAL(test_stack.size, TEST_STACK_SIZE);
+
+  TEST_ASSERT_EQUAL_PTR(FFSM_Stack_pop(&test_stack), (FFSM_State_t)3);
+  TEST_ASSERT_EQUAL(test_stack.top, 2);
+  TEST_ASSERT_EQUAL_PTR(FFSM_Stack_pop(&test_stack), (FFSM_State_t)2);
+  TEST_ASSERT_EQUAL(test_stack.top, 1);
+  TEST_ASSERT_EQUAL_PTR(FFSM_Stack_pop(&test_stack), (FFSM_State_t)1);
+  TEST_ASSERT_EQUAL(test_stack.top, 0);
+  TEST_ASSERT_EQUAL_PTR(FFSM_Stack_pop(&test_stack), (FFSM_State_t)1);
+  TEST_ASSERT_EQUAL(test_stack.top, 0);
+  TEST_ASSERT_EQUAL_PTR(FFSM_Stack_pop(&test_stack), (FFSM_State_t)1);
 }
+
 
 int main(int argc, char *argv[])
 {

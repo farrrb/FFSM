@@ -3,6 +3,7 @@
 //
 
 #include "FFSM_Stack.h"
+#include "FFSM_Types.h"
 
 int FFSM_Stack_init(FFSM_Stack_t *stack, FFSM_State_t *data, int size)
 {
@@ -26,7 +27,11 @@ int FFSM_Stack_push(FFSM_Stack_t *stack, FFSM_State_t state)
 {
   if (stack)
   {
-    return 0;
+    if (stack->top < stack->size)
+    {
+      stack->data[stack->top++] = state;
+      return 0;
+    }
   }
   return -1;
 }
@@ -35,6 +40,11 @@ FFSM_State_t FFSM_Stack_pop(FFSM_Stack_t *stack)
 {
   if (stack)
   {
+    if (stack->top > 0)
+    {
+      return stack->data[--stack->top];
+    }
+    return stack->data[0];
   }
   return FFSM_STATE_NONE;
 }
