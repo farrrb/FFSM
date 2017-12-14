@@ -2,11 +2,11 @@
 // Created by farrrb on 09-Dec-17.
 //
 
-#ifndef FBPFSM_ROOT_FFSM_STRINGS_H
-#define FBPFSM_ROOT_FFSM_STRINGS_H
+#ifndef FFSM_STRINGS_H__
+#define FFSM_STRINGS_H__
 
 #include "FFSM.h"
 
 const char * FFSM_getStrFromEvent(FFSM_Event_t event);
 
-#endif //FBPFSM_ROOT_FFSM_STRINGS_H
+#endif //FFSM_STRINGS_H__

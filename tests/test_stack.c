@@ -44,6 +44,8 @@ void test_init(void)
   TEST_ASSERT_EQUAL_PTR(FFSM_STATE_NONE, test_data[1]);
   TEST_ASSERT_EQUAL_PTR(FFSM_STATE_NONE, test_data[2]);
 
+
+  // push tests
   TEST_ASSERT_EQUAL(test_stack.top, 0);
   TEST_ASSERT_EQUAL_PTR(test_stack.data[0], (FFSM_State_t)0);
 
@@ -65,6 +67,8 @@ void test_init(void)
 
   TEST_ASSERT_EQUAL(test_stack.size, TEST_STACK_SIZE);
 
+
+  // pop tests
   TEST_ASSERT_EQUAL_PTR(FFSM_Stack_pop(&test_stack), (FFSM_State_t)3);
   TEST_ASSERT_EQUAL(test_stack.top, 2);
   TEST_ASSERT_EQUAL_PTR(FFSM_Stack_pop(&test_stack), (FFSM_State_t)2);
@@ -76,8 +80,8 @@ void test_init(void)
   TEST_ASSERT_EQUAL_PTR(FFSM_Stack_pop(&test_stack), (FFSM_State_t)1);
 
   TEST_ASSERT_EQUAL_PTR(FFSM_Stack_pop((FFSM_Stack_t *)0), FFSM_STATE_NONE);
-}
 
+}
 
 int main(int argc, char *argv[])
 {

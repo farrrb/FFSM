@@ -2,8 +2,8 @@
 // Created by farrrb on 10-Dec-17.
 //
 
-#ifndef FBPFSM_ROOT_FFSM_TYPES_H
-#define FBPFSM_ROOT_FFSM_TYPES_H
+#ifndef FFSM_TYPES_H__
+#define FFSM_TYPES_H__
 
 typedef int FFSM_Event_t;
 #define FFSM_EVENT_NONE   ((FFSM_Event_t)( 0))
@@ -31,4 +31,4 @@ typedef struct
   int top;
 } FFSM_Stack_t;
 
-#endif //FBPFSM_ROOT_FFSM_TYPES_H
+#endif //FFSM_TYPES_H__
