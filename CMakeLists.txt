@@ -27,3 +27,6 @@ setup_target(test_main 5)
 
 add_executable(test_stack tests/test_stack.c tests/test_helper.h)
 setup_target(test_stack 5)
+
+add_executable(test_windshieldwiper tests/test_windshieldwiper.c tests/test_helper.h)
+setup_target(test_windshieldwiper 5)

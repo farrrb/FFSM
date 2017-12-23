@@ -13,16 +13,16 @@ typedef int FFSM_Event_t;
 typedef int FFSM_Status_t;
 #define FFSM_STATUS_HANDLED ((FFSM_Status_t)(0))
 
-// prototype for all state function implementations
-typedef FFSM_Status_t (*FFSM_State_t)(FFSM_Event_t event, void *data);
-#define FFSM_STATE_NONE  ((FFSM_State_t)(0))
-
 // the FFSM
-typedef struct
+typedef struct FFSM
 {
-  FFSM_State_t current_state;
+  FFSM_Status_t (*current_state)(struct FFSM *self, FFSM_Event_t event, void *data);
   void *data;
 } FFSM_t;
+
+// prototype for all state function implementations
+typedef FFSM_Status_t (*FFSM_State_t)(FFSM_t *self, FFSM_Event_t event, void *data);
+#define FFSM_STATE_NONE  ((FFSM_State_t)(0))
 
 typedef struct
 {

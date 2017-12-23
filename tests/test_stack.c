@@ -1,7 +1,7 @@
 //
 // Created by farrrb on 09-Dec-17.
 //
-#include <FFSM_Types.h>
+#include "FFSM_Types.h"
 #include "test_helper.h"
 #include "unity.h"
 
@@ -11,8 +11,9 @@
 FFSM_Stack_t test_stack; ///< my test stack
 FFSM_State_t test_data[TEST_STACK_SIZE] = {(FFSM_State_t)0xF, (FFSM_State_t)0xA, (FFSM_State_t)0xB};
 
-FFSM_Status_t test_root(FFSM_Event_t event, void *data)
+FFSM_Status_t test_root(FFSM_t *self, FFSM_Event_t event, void *data)
 {
+  UNUSED_PARAM(self);
   UNUSED_PARAM(event);
   UNUSED_PARAM(data);
   return (FFSM_Status_t)0;

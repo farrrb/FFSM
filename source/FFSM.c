@@ -23,14 +23,14 @@ void FFSM_transit(FFSM_t * const self, FFSM_State_t new_state)
   {
     if (self->current_state)
     {
-      self->current_state(FFSM_EVENT_EXIT, self->data);
+      self->current_state(self, FFSM_EVENT_EXIT, self->data);
     }
 
     self->current_state = new_state;
 
     if (self->current_state)
     {
-      self->current_state(FFSM_EVENT_ENTRY, self->data);
+      self->current_state(self, FFSM_EVENT_ENTRY, self->data);
     }
   }
 }
@@ -41,7 +41,7 @@ void FFSM_dispatchEvent(FFSM_t *const self, FFSM_Event_t event)
   {
     if (self->current_state != FFSM_STATE_NONE)
     {
-      self->current_state(event, self->data);
+      self->current_state(self, event, self->data);
     }
   }
 }

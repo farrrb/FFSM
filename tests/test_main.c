@@ -7,7 +7,6 @@
 #include "unity.h"
 
 #include "FFSM.h"
-#include "FFSM_Strings.h"
 
 FFSM_t fsm_test;
 
@@ -20,12 +19,7 @@ struct fsm_data fsm_test_data;
 
 #define FFSM_SIG_TRANS_TO_NONE 1
 
-void print_event(FFSM_Event_t event)
-{
-  printf("\nevent: %s:(%d)", FFSM_getStrFromEvent(event), event);
-}
-
-FFSM_Status_t test_init_state(FFSM_Event_t event, void * data)
+FFSM_Status_t test_init_state(FFSM_t *self, FFSM_Event_t event, void * data)
 {
   print_event(event);
   struct fsm_data *p = (struct fsm_data *)data;
@@ -46,7 +40,7 @@ FFSM_Status_t test_init_state(FFSM_Event_t event, void * data)
     }
     case FFSM_SIG_TRANS_TO_NONE:
     {
-      FFSM_transit(&fsm_test, FFSM_STATE_NONE);
+      FFSM_transit(self, FFSM_STATE_NONE);
     }
     default:
     {
@@ -56,11 +50,15 @@ FFSM_Status_t test_init_state(FFSM_Event_t event, void * data)
   return FFSM_STATUS_HANDLED;
 }
 
-FFSM_Status_t test_final_state(FFSM_Event_t event, void * data)
+FFSM_Status_t test_final_state(FFSM_t *self, FFSM_Event_t event, void * data)
 {
+
+  UNUSED_PARAM(self);
+
   print_event(event);
   struct fsm_data *p = (struct fsm_data *)data;
   printf("\ngot data: %d", p->test_var);
+
   return FFSM_STATUS_HANDLED;
 }
 
