@@ -9,7 +9,7 @@
 FFSM_t windshield_wipers;
 
 #define SIGNAL_WW_SWITCH_ON  1
-#define FFSM_WW_SWITCH_OFF 2
+#define SIGNAL_WW_SWITCH_OFF 2
 
 FFSM_Status_t ww_off(FFSM_t *self, FFSM_Event_t event, void *data);
 FFSM_Status_t ww_on(FFSM_t *self, FFSM_Event_t event, void *data);
@@ -43,7 +43,7 @@ FFSM_Status_t ww_on(FFSM_t *self, FFSM_Event_t event, void *data)
   print_event(event);
   switch (event)
   {
-    case FFSM_WW_SWITCH_OFF:
+    case SIGNAL_WW_SWITCH_OFF:
       FFSM_transit(self, ww_off);
     case FFSM_EVENT_NONE:
     case FFSM_EVENT_ENTRY:
@@ -93,6 +93,8 @@ void tearDown(void)
 void test(void)
 {
   FFSM_init(&windshield_wipers, ww_off, (void *)0);
+  FFSM_dispatchEvent(&windshield_wipers, SIGNAL_WW_SWITCH_ON);
+  FFSM_dispatchEvent(&windshield_wipers, SIGNAL_WW_SWITCH_OFF);
 }
 
 int main(int argc, char *argv[])
