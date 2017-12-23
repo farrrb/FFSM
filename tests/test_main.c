@@ -80,17 +80,18 @@ void test_init(void)
 {
   printf("\ninit:");
   FFSM_init(&fsm_test, test_init_state, &fsm_test_data);
-  TEST_ASSERT_EQUAL_PTR(fsm_test.current_state, test_init_state);
-  TEST_ASSERT_EQUAL_PTR(fsm_test.data, &fsm_test_data);
-  FFSM_dispatchEvent(&fsm_test, FFSM_EVENT_NONE);
+  TEST_ASSERT_EQUAL_PTR(test_init_state, fsm_test.current_state);
+  TEST_ASSERT_EQUAL_PTR(&fsm_test_data,  fsm_test.data);
 
+  FFSM_dispatchEvent(&fsm_test, FFSM_EVENT_NONE);
   printf("\ntrans to none");
   FFSM_dispatchEvent(&fsm_test, FFSM_SIG_TRANS_TO_NONE);
-  TEST_ASSERT_EQUAL_PTR(fsm_test.current_state, FFSM_STATE_NONE);
+  TEST_ASSERT_EQUAL_PTR(FFSM_STATE_NONE, fsm_test.current_state);
 
   printf("\ntrans to final");
   FFSM_transit(&fsm_test, test_final_state);
-  TEST_ASSERT_EQUAL_PTR(fsm_test.current_state, test_final_state);
+  TEST_ASSERT_EQUAL_PTR(test_final_state, fsm_test.current_state);
+
   printf("\n");
 }
 
