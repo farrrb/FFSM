@@ -8,7 +8,7 @@
 
 FFSM_t windshield_wipers;
 
-#define FFSM_WW_SWITCH_ON  1
+#define SIGNAL_WW_SWITCH_ON  1
 #define FFSM_WW_SWITCH_OFF 2
 
 FFSM_Status_t ww_off(FFSM_t *self, FFSM_Event_t event, void *data);
@@ -25,7 +25,7 @@ FFSM_Status_t ww_off(FFSM_t *self, FFSM_Event_t event, void *data)
   print_event(event);
   switch (event)
   {
-    case FFSM_WW_SWITCH_ON:
+    case SIGNAL_WW_SWITCH_ON:
       FFSM_transit(self, ww_on);
     case FFSM_EVENT_NONE:
     case FFSM_EVENT_ENTRY:
@@ -59,7 +59,7 @@ FFSM_Status_t ww_speed_low(FFSM_t *self, FFSM_Event_t event, void *data)
   UNUSED_PARAM(self);
   UNUSED_PARAM(event);
   UNUSED_PARAM(data);
-  return (FFSM_Status_t)0;
+  return FFSM_STATUS_UNHANDLED;
 }
 
 FFSM_Status_t ww_speed_high(FFSM_t *self, FFSM_Event_t event, void *data)
@@ -67,7 +67,7 @@ FFSM_Status_t ww_speed_high(FFSM_t *self, FFSM_Event_t event, void *data)
   UNUSED_PARAM(self);
   UNUSED_PARAM(event);
   UNUSED_PARAM(data);
-  return (FFSM_Status_t)0;
+  return FFSM_STATUS_UNHANDLED;
 }
 
 FFSM_Status_t ww_wash(FFSM_t *self, FFSM_Event_t event, void *data)
@@ -75,7 +75,7 @@ FFSM_Status_t ww_wash(FFSM_t *self, FFSM_Event_t event, void *data)
   UNUSED_PARAM(self);
   UNUSED_PARAM(event);
   UNUSED_PARAM(data);
-  return (FFSM_Status_t)0;
+  return FFSM_STATUS_UNHANDLED;
 }
 
 

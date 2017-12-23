@@ -11,7 +11,8 @@ typedef int FFSM_Event_t;
 #define FFSM_EVENT_EXIT   ((FFSM_Event_t)(-2))
 
 typedef int FFSM_Status_t;
-#define FFSM_STATUS_HANDLED ((FFSM_Status_t)(0))
+#define FFSM_STATUS_HANDLED   ((FFSM_Status_t)(0))
+#define FFSM_STATUS_UNHANDLED ((FFSM_Status_t)(1))
 
 // the FFSM
 typedef struct FFSM
