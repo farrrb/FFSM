@@ -7,7 +7,7 @@
 
 #include "FFSM_Types.h"
 
-int FFSM_Stack_init(FFSM_Stack_t *stack, FFSM_State_t *data, unsigned int size, FFSM_State_t root);
+int FFSM_Stack_init(FFSM_Stack_t *stack, FFSM_State_t *data, unsigned int size);
 
 int FFSM_Stack_push(FFSM_Stack_t *stack, FFSM_State_t state);
 FFSM_State_t FFSM_Stack_pop(FFSM_Stack_t *stack);

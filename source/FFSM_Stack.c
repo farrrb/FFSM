@@ -4,9 +4,9 @@
 
 #include "FFSM_Stack.h"
 
-int FFSM_Stack_init(FFSM_Stack_t *stack, FFSM_State_t *data, unsigned int size, FFSM_State_t root)
+int FFSM_Stack_init(FFSM_Stack_t *stack, FFSM_State_t *data, unsigned int size)
 {
-  if (stack && root)
+  if (stack)
   {
     int i = 0;
     stack->data = data;
@@ -17,7 +17,7 @@ int FFSM_Stack_init(FFSM_Stack_t *stack, FFSM_State_t *data, unsigned int size, 
     {
       stack->data[i] = FFSM_STATE_NONE;
     }
-    return FFSM_Stack_push(stack, root);
+    return 0;
   }
   return -1;
 }
