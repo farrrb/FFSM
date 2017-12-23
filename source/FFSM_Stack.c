@@ -28,7 +28,7 @@ int FFSM_Stack_push(FFSM_Stack_t *stack, FFSM_State_t state)
   {
     if (stack->top < stack->size)
     {
-      stack->data[stack->top++] = state;
+      stack->data[(stack->top)++] = state;
       return 0;
     }
   }
@@ -41,9 +41,18 @@ FFSM_State_t FFSM_Stack_pop(FFSM_Stack_t *stack)
   {
     if (stack->top > 0)
     {
-      return stack->data[--stack->top];
+      return stack->data[--(stack->top)];
     }
-    return stack->data[0];
+    return stack->data[0]; // do not pop the last element, just return it
   }
   return FFSM_STATE_NONE;
+}
+
+int FFSM_Stack_getDepth(FFSM_Stack_t *stack)
+{
+  if (stack)
+  {
+    return stack->top;
+  }
+  return -1;
 }
