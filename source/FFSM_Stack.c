@@ -43,7 +43,6 @@ FFSM_State_t FFSM_Stack_pop(FFSM_Stack_t *stack)
     {
       return stack->data[--(stack->top)];
     }
-    return stack->data[0]; // do not pop the last element, just return it
   }
   return FFSM_STATE_NONE;
 }

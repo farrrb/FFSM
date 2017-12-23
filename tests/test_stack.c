@@ -44,6 +44,9 @@ void test_init(void)
   ret = FFSM_Stack_init(&test_stack, test_data, TEST_STACK_SIZE, test_root);
   TEST_ASSERT_EQUAL(ret, 0);
 
+  TEST_ASSERT_EQUAL(-1, FFSM_Stack_getDepth((FFSM_Stack_t *)0));
+  TEST_ASSERT_EQUAL( 1, FFSM_Stack_getDepth(&test_stack));
+
   TEST_ASSERT_EQUAL(TEST_STACK_SIZE, test_stack.size);
   TEST_ASSERT_EQUAL(1,               test_stack.top);
   TEST_ASSERT_EQUAL(test_data,       test_stack.data);
@@ -76,11 +79,11 @@ void test_init(void)
   TEST_ASSERT_EQUAL(                  1, test_stack.top);
   TEST_ASSERT_EQUAL_PTR(      test_root, FFSM_Stack_pop(&test_stack));
   TEST_ASSERT_EQUAL(                  0, test_stack.top);
-  TEST_ASSERT_EQUAL_PTR(      test_root, FFSM_Stack_pop(&test_stack));
+  TEST_ASSERT_EQUAL_PTR(FFSM_STATE_NONE, FFSM_Stack_pop(&test_stack));
   TEST_ASSERT_EQUAL(                  0, test_stack.top);
-  TEST_ASSERT_EQUAL_PTR(      test_root, FFSM_Stack_pop(&test_stack));
 
-  TEST_ASSERT_EQUAL_PTR(FFSM_Stack_pop((FFSM_Stack_t *)0), FFSM_STATE_NONE);
+
+  TEST_ASSERT_EQUAL_PTR(FFSM_STATE_NONE, FFSM_Stack_pop((FFSM_Stack_t *)0));
 
 }
 
