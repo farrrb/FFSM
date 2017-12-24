@@ -14,22 +14,25 @@ typedef int FFSM_Status_t;
 #define FFSM_STATUS_HANDLED   ((FFSM_Status_t)(0))
 #define FFSM_STATUS_UNHANDLED ((FFSM_Status_t)(1))
 
+// the FFSM Stack for HSM implementations
+typedef struct
+{
+  void **data;
+  unsigned int size;
+  int top;
+} FFSM_Stack_t;
+
 // the FFSM
 typedef struct FFSM
 {
   FFSM_Status_t (*current_state)(struct FFSM *self, FFSM_Event_t event, void *data);
   void *data;
+
+  FFSM_Stack_t *stack;
 } FFSM_t;
 
 // prototype for all state function implementations
 typedef FFSM_Status_t (*FFSM_State_t)(FFSM_t *self, FFSM_Event_t event, void *data);
 #define FFSM_STATE_NONE  ((FFSM_State_t)(0))
-
-typedef struct
-{
-  FFSM_State_t *data;
-  unsigned int size;
-  int top;
-} FFSM_Stack_t;
 
 #endif //FFSM_TYPES_H__

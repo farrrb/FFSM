@@ -92,7 +92,7 @@ void tearDown(void)
 // the actual test
 void test(void)
 {
-  FFSM_init(&windshield_wipers, ww_off, (void *)0);
+  FFSM_init(&windshield_wipers, ww_off, (void *) 0, NULL);
   FFSM_dispatchEvent(&windshield_wipers, SIGNAL_WW_SWITCH_ON);
   FFSM_dispatchEvent(&windshield_wipers, SIGNAL_WW_SWITCH_OFF);
 }

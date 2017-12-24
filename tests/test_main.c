@@ -77,7 +77,7 @@ void tearDown(void)
 void test_init(void)
 {
   printf("\ninit:");
-  FFSM_init(&fsm_test, test_init_state, &fsm_test_data);
+  FFSM_init(&fsm_test, test_init_state, &fsm_test_data, NULL);
   TEST_ASSERT_EQUAL_PTR(test_init_state, fsm_test.current_state);
   TEST_ASSERT_EQUAL_PTR(&fsm_test_data,  fsm_test.data);
 

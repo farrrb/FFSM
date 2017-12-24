@@ -4,12 +4,13 @@
 
 #include "FFSM.h"
 
-void FFSM_init(FFSM_t * const self, FFSM_State_t init_state, void *data)
+void FFSM_init(FFSM_t *const self, FFSM_State_t init_state, void *data, FFSM_Stack_t *const stack)
 {
   if (self)
   {
     self->current_state = FFSM_STATE_NONE;
     self->data = data;
+    self->stack = stack; // if this is NULL it is ok -> flat FSM else -> HSM
     if (init_state)
     {
       FFSM_transit(self, init_state);
